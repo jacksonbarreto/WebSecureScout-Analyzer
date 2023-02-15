@@ -37,7 +37,7 @@ MANIFEST
 pip-log.txt
 pip-delete-this-directory.txt
 
-# Unit test / coverage reports
+# Unit test / coverage analyzes
 htmlcov/
 .tox/
 .nox/
@@ -127,3 +127,12 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+
+# Jbrains
+.idea/
+
+# ignores the contents of the data source and analysis results directories
+data/
+analyzes/reports/
+analyzes/tables/
