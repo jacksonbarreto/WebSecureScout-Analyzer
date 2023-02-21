@@ -230,8 +230,46 @@ def create_directory_structure() -> None:
     """
     Creates the directory structure for the output files.
     """
+    main_dir = '../analyzes'
     sub_dir = ['tables', 'reports']
     categories_dir = ['security_headers', 'dnssec', 'https']
     for sub_directory in sub_dir:
         for category in categories_dir:
-            os.makedirs(os.path.join(sub_directory, category), exist_ok=True)
+            os.makedirs(os.path.join(main_dir, sub_directory, category), exist_ok=True)
+
+
+def save_dataframe_to_csv(dataframe: pd.DataFrame, file_name: str) -> None:
+    """
+    Saves a pandas DataFrame to a CSV file.
+
+    Args:
+        dataframe: The DataFrame to save.
+        file_name: The name of the file to save to.
+    """
+    dataframe.to_csv(file_name, index=False)
+
+
+def save_table(dataframe: pd.DataFrame, category: str, table_name: str) -> None:
+    """
+    Saves a pandas DataFrame to a CSV file.
+
+    Args:
+        dataframe: The DataFrame to save.
+        category: The category of the table.
+        table_name: The name of the table.
+    """
+    file_name = f'../analyzes/tables/{category}/{table_name}.csv'
+    save_dataframe_to_csv(dataframe, file_name)
+
+
+def save_report(report: str, category: str, report_name: str) -> None:
+    """
+    Saves a pandas DataFrame to a CSV file.
+
+    Args:
+        report: The report to save.
+        category: The category of the report.
+        report_name: The name of the report.
+    """
+    file_name = f'../analyzes/reports/{category}/{report_name}.txt'
+    save_string_to_file(file_name, report)
