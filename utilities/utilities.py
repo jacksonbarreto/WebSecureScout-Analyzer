@@ -222,7 +222,7 @@ def save_string_to_file(file_name: str, string: str) -> None:
         file_name: The name of the file to save to.
         string: The string to save.
     """
-    with open(file_name, 'w') as file:
+    with open(file_name.lower(), 'w') as file:
         file.write(string)
 
 
@@ -246,7 +246,7 @@ def save_dataframe_to_csv(dataframe: pd.DataFrame, file_name: str) -> None:
         dataframe: The DataFrame to save.
         file_name: The name of the file to save to.
     """
-    dataframe.to_csv(file_name, index=False)
+    dataframe.to_csv(file_name.lower(), index=False)
 
 
 def save_table(dataframe: pd.DataFrame, category: str, table_name: str) -> None:
