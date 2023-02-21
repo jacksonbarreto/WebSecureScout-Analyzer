@@ -179,6 +179,8 @@ def finalize_dataframe(dataframe: pd.DataFrame, columns_to_display: list[str], c
     dataframe.reset_index(inplace=True)
     # Transforms all column names to title style
     dataframe.columns = dataframe.columns.str.title()
+    # Transforms all column names in columns_to_display to title style
+    columns_to_display = [column.title() for column in columns_to_display]
     dataframe = dataframe[columns_to_display]
     validate_row_percent(dataframe)
     return dataframe
@@ -210,3 +212,26 @@ def get_extreme_values(data: pd.DataFrame, columns: List[str] = None) -> dict[st
 
     result['Total'] = {col: total_row[col].values[0] for col in columns}
     return result
+
+
+def save_string_to_file(file_name: str, string: str) -> None:
+    """
+    Saves a string to a file.
+
+    Args:
+        file_name: The name of the file to save to.
+        string: The string to save.
+    """
+    with open(file_name, 'w') as file:
+        file.write(string)
+
+
+def create_directory_structure() -> None:
+    """
+    Creates the directory structure for the output files.
+    """
+    sub_dir = ['tables', 'reports']
+    categories_dir = ['security_headers', 'dnssec', 'https']
+    for sub_directory in sub_dir:
+        for category in categories_dir:
+            os.makedirs(os.path.join(sub_directory, category), exist_ok=True)
