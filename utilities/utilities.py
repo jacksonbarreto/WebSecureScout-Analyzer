@@ -232,7 +232,7 @@ def create_directory_structure() -> None:
     """
     main_dir = '../analyzes'
     sub_dir = ['tables', 'reports']
-    categories_dir = ['security_headers', 'dnssec', 'https']
+    categories_dir = ['security_headers', 'dnssec', 'https', 'security_layer']
     for sub_directory in sub_dir:
         for category in categories_dir:
             os.makedirs(os.path.join(main_dir, sub_directory, category), exist_ok=True)
