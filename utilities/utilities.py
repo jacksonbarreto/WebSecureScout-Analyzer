@@ -158,7 +158,7 @@ def create_column(source_df: pd.DataFrame, analysis_dataframe: pd.DataFrame, col
 
 
 def finalize_dataframe(dataframe: pd.DataFrame, columns_to_display: list[str], column_to_sort: str,
-                       ascending: bool = True) -> pd.DataFrame:
+                       ascending: bool = True, region_column_name: str = 'region') -> pd.DataFrame:
     """
     Finalizes a pandas DataFrame by converting integer columns to integer type, adding a total row,
     sorting the DataFrame, and creating percentage columns.
@@ -177,10 +177,10 @@ def finalize_dataframe(dataframe: pd.DataFrame, columns_to_display: list[str], c
     convert_int_column_to_int_type(dataframe)
     # makes the current index (region) back to a number and the region column back to a column again
     dataframe.reset_index(inplace=True)
-    # Transforms all column names to title style
-    dataframe.columns = dataframe.columns.str.title()
+    # Fix name of region column
+    dataframe.rename(columns={region_column_name:region_column_name.title()}, inplace=True)
     # Transforms all column names in columns_to_display to title style
-    columns_to_display = [column.title() for column in columns_to_display]
+    columns_to_display = [column for column in columns_to_display]
     dataframe = dataframe[columns_to_display]
     validate_row_percent(dataframe)
     return dataframe
