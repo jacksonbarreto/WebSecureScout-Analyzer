@@ -1,6 +1,6 @@
 import os
 import re
-from typing import List, Dict, Any
+from typing import List, Any
 
 import pandas as pd
 
@@ -168,6 +168,7 @@ def finalize_dataframe(dataframe: pd.DataFrame, columns_to_display: list[str], c
         columns_to_display: A list of column names to display.
         column_to_sort: The name of the column to sort by.
         ascending: Whether to sort in ascending (True) or descending (False) order. Defaults to True.
+        region_column_name: The name of the region column in the source dataframe. Default is 'region'.
 
     Returns:
         The finalized DataFrame.
@@ -178,7 +179,7 @@ def finalize_dataframe(dataframe: pd.DataFrame, columns_to_display: list[str], c
     # makes the current index (region) back to a number and the region column back to a column again
     dataframe.reset_index(inplace=True)
     # Fix name of region column
-    dataframe.rename(columns={region_column_name:region_column_name.title()}, inplace=True)
+    dataframe.rename(columns={region_column_name: region_column_name.title()}, inplace=True)
     # Transforms all column names in columns_to_display to title style
     columns_to_display = [column for column in columns_to_display]
     dataframe = dataframe[columns_to_display]
