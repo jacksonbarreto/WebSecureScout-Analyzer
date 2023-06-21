@@ -20,8 +20,6 @@ def importer_google(spreadsheet_name: str, person_email: Optional[str] = None,
     spreadsheet = client.create(spreadsheet_name)
     email = person_email
     spreadsheet.share(email, perm_type='user', role='writer')
-    # Configurar a região para EUA
-    # Isso pode ser feito manualmente nas configurações da planilha, pois é uma configuração única.
 
     spreadsheet = client.open(spreadsheet_name)
 
@@ -52,9 +50,6 @@ def importer_google(spreadsheet_name: str, person_email: Optional[str] = None,
             body={'values': data}
         )
         worksheet.freeze(rows=1)
-
-        # Configurar colunas como do tipo número
-        # Isso pode ser feito através da interface da web, pois a gspread não suporta a formatação de células diretamente.
 
         worksheet.set_basic_filter()
 
