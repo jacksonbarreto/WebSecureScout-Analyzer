@@ -27,7 +27,8 @@ def load_data(filename: str) -> pd.DataFrame:
 
 
 def get_records_by_region(source_df: pd.DataFrame, region_column_name: str = 'region',
-                          column_name_to_results_global: str = 'Global #') -> pd.DataFrame:
+                          column_name_to_results_global: str = 'Global #', hei_type: str = None,
+                          hei_type_column_name: str = 'category') -> pd.DataFrame:
     """
     Group the data by a region column and count the number of records in each region.
 
@@ -35,11 +36,16 @@ def get_records_by_region(source_df: pd.DataFrame, region_column_name: str = 're
         source_df: A pandas dataframe containing the data to be grouped.
         region_column_name: A string representing the column name of the region to group by. Default is 'region'.
         column_name_to_results_global: A string representing the new name of the count column. Default is 'Global #'.
+        hei_type: A string representing the school type to filter by (e.g., 'public', 'private'). Default is None.
+        hei_type_column_name: A string representing the column name for school type. Default is 'school_type'.
 
     Returns:
         A new pandas dataframe with a count of records for each unique region.
 
     """
+    if hei_type is not None:
+        source_df = source_df[source_df[hei_type_column_name] == hei_type]
+
     records_by_region = source_df.groupby([region_column_name]).count()
     records_by_region.rename(columns={standard_countable_variable: column_name_to_results_global}, inplace=True)
     return records_by_region
@@ -274,3 +280,49 @@ def save_report(report: str, category: str, report_name: str) -> None:
     """
     file_name = f'../analyzes/reports/{category}/{report_name}.txt'
     save_string_to_file(file_name, report)
+
+
+def assign_quartile(rank: int, total_states: int) -> int:
+    quartile_size = total_states // 4
+
+    if rank <= quartile_size:
+        return 1
+    elif rank <= quartile_size * 2:
+        return 2
+    elif rank <= quartile_size * 3:
+        return 3
+    else:
+        return 4
+
+
+def rank_key_size(key_size):
+    if key_size == 1024:
+        return 1
+    if key_size in range(160, 223):
+        return 2
+    if key_size == 1152:
+        return 3
+    if key_size == 1408:
+        return 4
+    if key_size == 1984:
+        return 5
+    if key_size == 2048:
+        return 6
+    if key_size in range(224, 255):
+        return 7
+    if key_size == 3072:
+        return 8
+    if key_size in range(256, 383):
+        return 9
+    if key_size == 4096:
+        return 10
+    if key_size == 7680:
+        return 11
+    if key_size in range(384, 400):
+        return 12
+    if key_size == 8192:
+        return 13
+    if key_size == 15360:
+        return 14
+    if key_size == 521:
+        return 15
