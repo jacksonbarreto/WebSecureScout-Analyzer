@@ -139,3 +139,6 @@ analyzes/tables/
 
 # ignore lab.py
 lab.py
+
+# credentials
+importergoogle/google-credential.json
