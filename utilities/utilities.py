@@ -326,3 +326,15 @@ def rank_key_size(key_size):
         return 14
     if key_size == 521:
         return 15
+
+
+def calculate_rank(row, target: list[str]):
+    public_cols = [col for col in row.index if '(pub)' in col]
+    private_cols = [col for col in row.index if '(pvt)' in col]
+
+    if all(row[col] == 0 for col in public_cols):
+        return row[f'{target} (pvt)']
+    elif all(row[col] == 0 for col in private_cols):
+        return row[f'{target} (pub)']
+    else:
+        return (row[f'{target} (pub)'] + row[f'{target} (pvt)']) / 2
