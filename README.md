@@ -10,7 +10,7 @@ WebSecureScout Analyzer is a Python and Jupyter-based tool designed to analyze t
 + Open the notebook referring to the analysis you want to perform, such as "security_layer.ipynb", using Jupyter.
 + Run the notebook to generate CSV files and text files with analysis results and interpretations.
 
-Note: Please make sure to follow the instructions carefully to ensure the correct functioning of the tool. And keep in mind that this analyzer only works with data coming from [WebSecureScout](https://github.com/jacksonbarreto/WebSecureScout).
+Note: Please make sure to follow the instructions carefully to ensure the correct functioning of the tool. And keep in mind that this analyzer only works with data coming from XXX.
 
 ## Contributing
 
@@ -22,7 +22,6 @@ This tool is licensed under the MIT License. Please see the LICENSE file for mor
 
 ## Acknowledgments
 
-We would like to acknowledge the support of the Norte Portugal Regional Operational Programme (NORTE 2020), under the PORTUGAL 2020 Partnership Agreement, through the European Regional Development Fund (ERDF), within the project "Cybers SeC IP" (NORTE-01-0145-FEDER-000044). This study was also developed as part of the Master in Cybersecurity Program at the Instituto Politécnico de Viana do Castelo, Portugal.
 
 
 
